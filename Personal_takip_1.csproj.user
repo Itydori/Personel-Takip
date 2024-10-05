@@ -16,6 +16,12 @@
     <Compile Update="frmPersonelListele.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="frmSifremiUnuttum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="frmYeniKullanici.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="frmPersonelListele.resx">

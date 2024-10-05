@@ -58,28 +58,60 @@ namespace Personal_takip_1
             p.Telefon = txtTelefon.Text;
             p.Adres = txtAdres.Text;
             p.Email = txtEmail.Text;
-            p.Departman = (int)comboDepartman.SelectedValue;
-            if (comboDepartman.SelectedValue != null)
-            {
-                p.Departman = (int)comboDepartman.SelectedValue;
-            }
-            else
-            {
-                // Hata işleme veya varsayılan değer atama
-                p.Departman = 0; // Örneğin, varsayılan değer olarak 0 atayabilirsiniz
-            }
+            p.Departman = comboDepartman.SelectedValue != null ? (int)comboDepartman.SelectedValue : 0; // Set default value if null
             p.Durumu = txtDurumu.Text;
             p.Maasi = decimal.Parse(txtMaasi.Text);
             p.GirisTarihi = dateTimePickerGirisTarihi.Value;
             p.Aciklama = txtAciklama.Text;
+
+            // Kontrol etmek istediğimiz değerleri bir listeye ekleyelim
+            List<string> hataliSutunlar = new List<string>();
+            if (string.IsNullOrEmpty(p.Adi))
+                hataliSutunlar.Add("Adı");
+            if (string.IsNullOrEmpty(p.Soyadi))
+                hataliSutunlar.Add("Soyadı");
+            if (string.IsNullOrEmpty(p.Telefon))
+                hataliSutunlar.Add("Telefon");
+            if (string.IsNullOrEmpty(p.Adres))
+                hataliSutunlar.Add("Adres");
+            if (string.IsNullOrEmpty(p.Email))
+                hataliSutunlar.Add("Email");
+            if (p.Departman == 0)
+                hataliSutunlar.Add("Departman");
+            if (string.IsNullOrEmpty(p.Durumu))
+                hataliSutunlar.Add("Durumu");
+            if (p.Maasi <= 0)
+                hataliSutunlar.Add("Maaşı");
+
+            // Eğer hatalı sütunlar varsa, kullanıcıya uyarı mesajı gösterelim
+            if (hataliSutunlar.Count > 0)
+            {
+                string hataMesaji = "Aşağıdaki sütunlara geçersiz veri girişi yapıldı:\n";
+                foreach (string sutun in hataliSutunlar)
+                {
+                    hataMesaji += sutun + "\n";
+                }
+                MessageBox.Show(hataMesaji, "Geçersiz Veri Girişi", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             string sorgu = "update personeller set Adi=@Adi,Soyadi=@Soyadi,Telefon=@Telefon,Adres=@Adres,Email=@Email,DepartmanID=@DepartmanID,Durumu=@Durumu,Maasi=@Maasi,GirisTarihi=@GirisTarihi,Aciklama=@Aciklama where PersonelID=@PersonelID";
             SqlCommand cmd = new SqlCommand();
+            cmd.Parameters.Add("@Adi", SqlDbType.VarChar).Value = p.Adi;
+            cmd.Parameters.Add("@Soyadi", SqlDbType.VarChar).Value = p.Soyadi;
+            cmd.Parameters.Add("@Telefon", SqlDbType.VarChar).Value = p.Telefon;
+            cmd.Parameters.Add("@Adres", SqlDbType.VarChar).Value = p.Adres;
+            cmd.Parameters.Add("@Email", SqlDbType.VarChar).Value = p.Email;
+            cmd.Parameters.Add("@DepartmanID", SqlDbType.Int).Value = p.Departman;
+            cmd.Parameters.Add("@Durumu", SqlDbType.VarChar).Value = p.Durumu;
             cmd.Parameters.Add("@Maasi", SqlDbType.Decimal).Value = p.Maasi;
             cmd.Parameters.Add("@GirisTarihi", SqlDbType.DateTime).Value = p.GirisTarihi;
+            cmd.Parameters.Add("@Aciklama", SqlDbType.VarChar).Value = p.Aciklama;
+            cmd.Parameters.Add("@PersonelID", SqlDbType.Int).Value = p.PersonelID;
             Veritabanı.ESG(cmd, sorgu);
             Temizle();
             MessageBox.Show("Güncelleme işlemi başarılı", "Güncelleme", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+            YenileListele(); // Update the data grid view
         }
 
         private void btnCikis_Click(object sender, EventArgs e)

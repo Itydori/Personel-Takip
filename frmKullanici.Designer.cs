@@ -39,6 +39,7 @@
             btnKullaniciGiris = new Button();
             checkBox1 = new CheckBox();
             linkLabel1 = new LinkLabel();
+            btnKayitOl2 = new Button();
             panel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -161,6 +162,20 @@
             linkLabel1.TabIndex = 7;
             linkLabel1.TabStop = true;
             linkLabel1.Text = "Şifremi Unuttum";
+            linkLabel1.LinkClicked += linkLabel1_LinkClicked;
+            // 
+            // btnKayitOl2
+            // 
+            btnKayitOl2.BackColor = Color.MidnightBlue;
+            btnKayitOl2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 162);
+            btnKayitOl2.ForeColor = SystemColors.ButtonFace;
+            btnKayitOl2.Location = new Point(75, 395);
+            btnKayitOl2.Name = "btnKayitOl2";
+            btnKayitOl2.Size = new Size(250, 54);
+            btnKayitOl2.TabIndex = 5;
+            btnKayitOl2.Text = "Kayıt Ol";
+            btnKayitOl2.UseVisualStyleBackColor = false;
+            btnKayitOl2.Click += btnKayitOl_Click;
             // 
             // frmKullanici
             // 
@@ -169,6 +184,7 @@
             ClientSize = new Size(400, 500);
             Controls.Add(linkLabel1);
             Controls.Add(checkBox1);
+            Controls.Add(btnKayitOl2);
             Controls.Add(btnKullaniciGiris);
             Controls.Add(label4);
             Controls.Add(label3);
@@ -177,9 +193,10 @@
             Controls.Add(txtSifre);
             FormBorderStyle = FormBorderStyle.None;
             Name = "frmKullanici";
-            Opacity = 0.8D;
+            Opacity = 0.9D;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Kullanıcı İşlemleri Sayfası";
+            Load += frmKullanici_Load;
             panel1.ResumeLayout(false);
             panel1.PerformLayout();
             ResumeLayout(false);
@@ -215,5 +232,6 @@
         private Button btnKullaniciGiris;
         private CheckBox checkBox1;
         private LinkLabel linkLabel1;
+        private Button btnKayitOl2;
     }
 }

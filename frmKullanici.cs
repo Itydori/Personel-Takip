@@ -16,7 +16,7 @@ namespace Personal_takip_1
             Kullanicilar.KullaniciGirisi(txtKullaniciAdi.Text, txtSifre.Text);
             if (Kullanicilar.durum)
             {
-                
+
                 this.Hide(); // Giriþ yapýldýktan sonra giriþ ekranýný gizler
 
             }
@@ -25,10 +25,27 @@ namespace Personal_takip_1
                 MessageBox.Show("Kullanýcý Adý veya Þifre Hatalý");
             }
         }
+        private void btnKayitOl_Click(object sender, EventArgs e)
+        {
+            frmYeniKullanici frm = new frmYeniKullanici();
+            frm.ShowDialog();
+        }
 
         private void lblCikis_Click(object sender, EventArgs e)
         {
             Application.Exit();
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmSifremiUnuttum frm = new frmSifremiUnuttum();
+            frm.ShowDialog();
+            Kullanicilar.KullaniciGirisi(txtKullaniciAdi.Text, txtSifre.Text);
+        }
+
+        private void frmKullanici_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

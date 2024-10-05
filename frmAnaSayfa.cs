@@ -40,5 +40,14 @@ namespace Personal_takip_1
             frmKullanici k = new frmKullanici();
             k.ShowDialog();
         }
+
+        
+
+        private void btnCikisYap_Click(object sender, EventArgs e)
+        {
+            frmKullanici frm = new frmKullanici();
+            frm.Show();
+            this.Hide();
+        }
     }
 }

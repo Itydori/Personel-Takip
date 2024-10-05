@@ -31,6 +31,7 @@
             btnDepartmanlar = new Button();
             btnPersonelEkle = new Button();
             btnPersonelListele = new Button();
+            btnCikisYap = new Button();
             SuspendLayout();
             // 
             // btnDepartmanlar
@@ -72,11 +73,25 @@
             btnPersonelListele.UseVisualStyleBackColor = false;
             btnPersonelListele.Click += btnPersonelListele_Click;
             // 
+            // btnCikisYap
+            // 
+            btnCikisYap.BackColor = SystemColors.ActiveCaptionText;
+            btnCikisYap.Font = new Font("Segoe UI", 9.5F, FontStyle.Bold);
+            btnCikisYap.ForeColor = SystemColors.Control;
+            btnCikisYap.Location = new Point(551, 206);
+            btnCikisYap.Name = "btnCikisYap";
+            btnCikisYap.Size = new Size(71, 43);
+            btnCikisYap.TabIndex = 3;
+            btnCikisYap.Text = "Çıkış Yap";
+            btnCikisYap.UseVisualStyleBackColor = false;
+            btnCikisYap.Click += btnCikisYap_Click;
+            // 
             // frmAnaSayfa
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(634, 261);
+            Controls.Add(btnCikisYap);
             Controls.Add(btnPersonelListele);
             Controls.Add(btnPersonelEkle);
             Controls.Add(btnDepartmanlar);
@@ -92,5 +107,6 @@
         private Button btnDepartmanlar;
         private Button btnPersonelEkle;
         private Button btnPersonelListele;
+        private Button btnCikisYap;
     }
 }
